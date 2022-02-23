@@ -12,3 +12,5 @@
 1) commit (ctrl+k)
 2) pull / update our project (ctrl+T)
 3) push (ctrl+shift+k)
+
+### note: /src/main.js must be included in index.html
