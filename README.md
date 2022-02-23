@@ -13,4 +13,5 @@
 2) pull / update our project (ctrl+T)
 3) push (ctrl+shift+k)
 
-### note: /src/main.js must be included in index.html
+# Note: 
+/src/main.js must be included in index.html
