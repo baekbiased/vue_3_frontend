@@ -22,9 +22,7 @@
           </div>
         </li>
         <li class="nav-item dropdown me-2"><a class="nav-link nav-link-icon text-gray-400 px-1" id="notifications" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <svg class="svg-icon svg-icon-md svg-icon-heavy">
-            <use xlink:href="icons/orion-svg-sprite.57a86639.svg#sales-up-1"> </use>
-          </svg><span class="notification-badge bg-green"></span></a>
+          <i class="fa fa-solid fa-bell"></i><span class="notification-badge bg-green"></span></a>
           <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated text-sm" aria-labelledby="notifications"><a class="dropdown-item" href="#">
             <div class="d-flex align-items-center">
               <div class="icon icon-sm bg-indigo text-white"><i class="fab fa-twitter"></i></div>
@@ -55,9 +53,7 @@
         </li>
         <!-- Messages                        -->
         <li class="nav-item dropdown me-2 me-lg-3"> <a class="nav-link nav-link-icon text-gray-400 px-1" id="messages" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <svg class="svg-icon svg-icon-md svg-icon-heavy">
-            <use xlink:href="icons/orion-svg-sprite.57a86639.svg#paper-plane-1"> </use>
-          </svg><span class="notification-badge notification-badge-number bg-primary">10</span></a>
+          <i class="fa fa-solid fa-paper-plane"></i><span class="notification-badge notification-badge-number bg-primary">10</span></a>
           <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated text-sm" aria-labelledby="messages"><a class="dropdown-item d-flex align-items-center p-3" href="#"> <img class="avatar avatar-sm p-1 me-2" src="https://d19m59y37dris4.cloudfront.net/bubbly/1-2/img/avatar-0.jpg" alt="Jason Doe">
             <div class="pt-1">
               <h6 class="fw-bold mb-0">Jason Doe</h6><span class="text-muted text-sm">Sent you a message</span>
