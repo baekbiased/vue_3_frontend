@@ -7,3 +7,8 @@
 ### Vue-router
  1) change component
  2) url push
+
+### Push to git
+1) commit (ctrl+k)
+2) pull / update our project (ctrl+T)
+3) push (ctrl+shift+k)
