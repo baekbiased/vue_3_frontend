@@ -9,37 +9,39 @@
         <div class="row mb-5">
           <div class="col-lg-4">
             <div class="card mb-4 mb-lg-0">
-              <div class="card-body">
-                <div class="mb-4">
-                  <label class="form-label" for="name">Name</label>
-                  <input class="form-control" id="name" type="text">
-                  <div class="form-text">The name is how it appears on your site.</div>
+              <form  @submit.prevent="addUser">
+                <div class="card-body">
+                  <div class="mb-4">
+                    <label class="form-label" for="name">Name</label>
+                    <input class="form-control" v-model="name" id="name" type="text">
+                    <div class="form-text">The name is how it appears on your site.</div>
+                  </div>
+                  <div class="mb-4">
+                    <label class="form-label" for="city">City</label>
+                    <input class="form-control" v-model="city" id="city" type="text">
+                    <div class="form-text">The “city” where you were born and live.</div>
+                  </div>
+                  <div class="mb-4">
+                    <label class="form-label" for="email">Email</label>
+                    <input class="form-control" v-model="email" id="email" type="email">
+                    <div class="form-text">The "email" where people can contact you.</div>
+                  </div>
+                  <div class="mb-4">
+                    <label class="form-label" for="phone">Phone#</label>
+                    <input class="form-control" v-model="phone" id="phone" type="number">
+                    <div class="form-text">Your personal phone number.</div>
+                  </div>
+                  <div class="mb-4">
+                    <label class="form-label" for="status">Status</label>
+                    <select class="form-select" v-model="status" id="status" >
+                      <option value="Active">Active</option>
+                      <option value="Inactive">Inactive</option>
+                    </select>
+                    <div class="form-text">Your status for whatever you want.</div>
+                  </div>
+                  <button class="btn btn-primary mb-4">Add User</button>
                 </div>
-                <div class="mb-4">
-                  <label class="form-label" for="city">City</label>
-                  <input class="form-control" id="city" type="text">
-                  <div class="form-text">The “city” where you were born and live.</div>
-                </div>
-                <div class="mb-4">
-                  <label class="form-label" for="email">Email</label>
-                  <input class="form-control" id="email" type="email">
-                  <div class="form-text">The "email" where people can contact you.</div>
-                </div>
-                <div class="mb-4">
-                  <label class="form-label" for="phone">Phone#</label>
-                  <input class="form-control" id="phone" type="number">
-                  <div class="form-text">Your personal phone number.</div>
-                </div>
-                <div class="mb-4">
-                  <label class="form-label" for="status">Status</label>
-                  <select class="form-select" id="status" name="status">
-                    <option value="0">Active</option>
-                    <option value="1">Inactive</option>
-                  </select>
-                  <div class="form-text">Your status for whatever you want.</div>
-                </div>
-                <button class="btn btn-primary mb-4">Add User</button>
-              </div>
+              </form>
             </div>
           </div>
           <div class="col-lg-8">
@@ -102,33 +104,48 @@
             "name" : "Jahanzaib",
             "city" : "Wah Cantt",
             "email" : "jahanzaibkhan239@gmail.com",
-            "phone" : "123456789",
+            "phone" : "+92 4308665",
             "status" : "Active"
           },
           {
             "name" : "Saad",
             "city" : "Lahore",
             "email" : "saad1212@gmail.com",
-            "phone" : "123456789",
+            "phone" : "+92 5338665",
             "status" : "Inactive"
           },
           {
             "name" : "Hamza",
             "city" : "Usman Khattar",
             "email" : "hamza@gmail.com",
-            "phone" : "123456789",
+            "phone" : "+92 7538665",
             "status" : "Active"
           },
           {
             "name" : "Hassan",
             "city" : "Lahore",
             "email" : "hassan@gmail.com",
-            "phone" : "123456789",
+            "phone" : "+92 9309725",
             "status" : "Active"
           }
         ]
       }
+    },
+    methods: {
+      addUser(){
+        var new_user = {
+          name : this.name,
+          city : this.city,
+          email : this.email,
+          phone : this.phone,
+          status : this.status
+        }
+        this.users.push( new_user );
+
+      }
     }
+
+
   }
 
 </script>
