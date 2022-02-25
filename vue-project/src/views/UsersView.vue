@@ -14,22 +14,23 @@
                   <div class="mb-4">
                     <label class="form-label" for="name">Name</label>
                     <input class="form-control" v-model="name" id="name" type="text">
-                    <div class="form-text">The name is how it appears on your site.</div>
+                    <div class="error-msg">{{ error.name }}</div>
+
                   </div>
                   <div class="mb-4">
                     <label class="form-label" for="city">City</label>
                     <input class="form-control" v-model="city" id="city" type="text">
-                    <div class="form-text">The “city” where you were born and live.</div>
+                    <div class="error-msg">{{ error.city }}</div>
                   </div>
                   <div class="mb-4">
                     <label class="form-label" for="email">Email</label>
                     <input class="form-control" v-model="email" id="email" type="text">
-                    <div class="form-text">The "email" where people can contact you.</div>
+                    <div class="error-msg">{{ error.email }}</div>
                   </div>
                   <div class="mb-4">
                     <label class="form-label" for="phone">Phone#</label>
                     <input class="form-control" v-model="phone" id="phone" type="text">
-                    <div class="form-text">Your personal phone number.</div>
+                    <div class="error-msg">{{ error.phone }}</div>
                   </div>
                   <div class="mb-4">
                     <label class="form-label" for="status">Status</label>
@@ -37,7 +38,7 @@
                       <option value="Active">Active</option>
                       <option value="Inactive">Inactive</option>
                     </select>
-                    <div class="form-text">Your status for whatever you want.</div>
+                    <div class="error-msg">{{ error.status }}</div>
                   </div>
                   <button class="btn btn-primary mb-4">Add User</button>
                 </div>
@@ -104,7 +105,13 @@
 
     data: () => {
       return {
-        error: [],
+        error: {
+          name : null,
+          city : null,
+          email : null,
+          phone : null,
+          status : null,
+        },
 
         name : null,
         city : null,
@@ -173,6 +180,23 @@
           console.log("success")
         }else{
           console.log("failed")
+          if(this.v$.name.$error){
+            console.log("Name is Required!")
+            this.error.name = "Name is Required!"
+          }
+          if(this.v$.city.$error){
+            this.error.city = "City is Required!"
+          }
+          if(this.v$.email.$error){
+            this.error.email = "Email is Required!"
+          }
+          if(this.v$.phone.$error){
+            this.error.phone = "Phone# is Required!"
+          }
+          if(this.v$.status.$error){
+            this.error.status = "Status is Required!"
+          }
+
         }
       }
     }
