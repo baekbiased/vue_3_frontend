@@ -9,7 +9,7 @@
         <div class="row mb-5">
           <div class="col-lg-4">
             <div class="card mb-4 mb-lg-0">
-              <form  @submit.prevent="addUser">
+              <form ref="userForm" @submit.prevent="addUser">
                 <div class="card-body">
                   <div class="mb-4">
                     <label class="form-label" for="name">Name</label>
@@ -43,6 +43,7 @@
                   <button class="btn btn-primary mb-4">Add User</button>
                 </div>
               </form>
+
             </div>
           </div>
           <div class="col-lg-8">
@@ -164,7 +165,7 @@
 
 
     methods: {
-      addUser(){
+      addUser(event){
         // this.v$.$touch()
         this.v$.$validate()
 
@@ -177,8 +178,14 @@
             status : this.status
           }
           this.users.push( new_user );
-          console.log("success")
-        }else{
+          console.log("success");
+          this.name = '';
+          this.city = '';
+          this.email = '';
+          this.phone = '';
+          this.status = '';
+        }
+        else{
           console.log("failed")
           if(this.v$.name.$error){
             console.log("Name is Required!")
