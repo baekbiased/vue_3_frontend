@@ -23,12 +23,12 @@
                   </div>
                   <div class="mb-4">
                     <label class="form-label" for="email">Email</label>
-                    <input class="form-control" v-model="email" id="email" type="email">
+                    <input class="form-control" v-model="email" id="email" type="text">
                     <div class="form-text">The "email" where people can contact you.</div>
                   </div>
                   <div class="mb-4">
                     <label class="form-label" for="phone">Phone#</label>
-                    <input class="form-control" v-model="phone" id="phone" type="number">
+                    <input class="form-control" v-model="phone" id="phone" type="text">
                     <div class="form-text">Your personal phone number.</div>
                   </div>
                   <div class="mb-4">
@@ -96,9 +96,22 @@
 </template>
 
 <script>
+  import useVuelidate from '@vuelidate/core'
+  import { required, email } from '@vuelidate/validators'
+
   export default {
-    data() {
+    setup:  () => ({ v$: useVuelidate() }),
+
+    data: () => {
       return {
+        error: [],
+
+        name : null,
+        city : null,
+        email : null,
+        phone : null,
+        status : null,
+
         users: [
           {
             "name" : "Jahanzaib",
@@ -131,17 +144,36 @@
         ]
       }
     },
+
+    validations () {
+      return {
+        name : { required },
+        city : { required },
+        email : { required, email },
+        phone : { required },
+        status : { required }
+      }
+    },
+
+
     methods: {
       addUser(){
-        var new_user = {
-          name : this.name,
-          city : this.city,
-          email : this.email,
-          phone : this.phone,
-          status : this.status
-        }
-        this.users.push( new_user );
+        // this.v$.$touch()
+        this.v$.$validate()
 
+        if(!this.v$.$error){
+          var new_user = {
+            name : this.name,
+            city : this.city,
+            email : this.email,
+            phone : this.phone,
+            status : this.status
+          }
+          this.users.push( new_user );
+          console.log("success")
+        }else{
+          console.log("failed")
+        }
       }
     }
 
