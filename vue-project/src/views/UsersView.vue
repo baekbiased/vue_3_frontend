@@ -13,6 +13,7 @@
                 <div class="card-body">
                   <div class="mb-4">
                     <label class="form-label" for="name">Name</label>
+                    <input v-model="id" hidden>
                     <input class="form-control" v-model="name" id="name" type="text">
                     <div class="error-msg">{{ error.name }}</div>
 
@@ -58,6 +59,7 @@
                   <thead>
                   <tr>
                     <th style="width: 11.1131%;" data-sortable="false"> </th>
+                    <th>Id</th>
                     <th data-sortable="" style="width: 22.5187%;"><a href="#" class="dataTable-sorter">Name</a></th>
                     <th data-sortable="" style="width: 24.5659%;"><a href="#" class="dataTable-sorter">City</a></th>
                     <th data-sortable="" style="width: 21.7876%;"><a href="#" class="dataTable-sorter">Email</a></th>
@@ -66,8 +68,9 @@
                   </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="(user) in users">
+                    <tr @dblclick="getUser(user)" v-for="(user, index) in users">
                       <td><span class="form-check"><input class="form-check-input" type="checkbox"></span></td>
+                      <td>{{ user.id }}</td>
                       <td><a href="javascript:void(0)" class="text-decoration-none text-reset fw-bolder">{{ user.name }}</a></td>
                       <td>{{ user.city }}</td>
                       <td>{{ user.email }}</td>
@@ -113,7 +116,7 @@
           phone : null,
           status : null,
         },
-
+        id : null,
         name : null,
         city : null,
         email : null,
@@ -122,6 +125,7 @@
 
         users: [
           {
+            "id" : "1",
             "name" : "Jahanzaib",
             "city" : "Wah Cantt",
             "email" : "jahanzaibkhan239@gmail.com",
@@ -129,6 +133,7 @@
             "status" : "Active"
           },
           {
+            "id" : "2",
             "name" : "Saad",
             "city" : "Lahore",
             "email" : "saad1212@gmail.com",
@@ -136,6 +141,7 @@
             "status" : "Inactive"
           },
           {
+            "id" : "3",
             "name" : "Hamza",
             "city" : "Usman Khattar",
             "email" : "hamza@gmail.com",
@@ -143,6 +149,7 @@
             "status" : "Active"
           },
           {
+            "id" : "4",
             "name" : "Hassan",
             "city" : "Lahore",
             "email" : "hassan@gmail.com",
@@ -165,20 +172,36 @@
 
 
     methods: {
-      addUser(event){
+      addUser(){
         // this.v$.$touch()
         this.v$.$validate()
 
         if(!this.v$.$error){
-          var new_user = {
-            name : this.name,
-            city : this.city,
-            email : this.email,
-            phone : this.phone,
-            status : this.status
+          if(this.id){
+            this.users.map((user) => {
+              if(this.id == user.id){
+                user.name = this.name
+                user.city = this.city
+                user.email = this.email
+                user.phone = this.phone
+                user.status = this.status
+              }
+            });
           }
-          this.users.push( new_user );
+          else{
+            var new_user = {
+              id : (this.users.length)+1,
+              name : this.name,
+              city : this.city,
+              email : this.email,
+              phone : this.phone,
+              status : this.status
+            }
+            this.users.push( new_user );
+          }
+
           console.log("success");
+          this.id = '';
           this.name = '';
           this.city = '';
           this.email = '';
@@ -205,6 +228,17 @@
           }
 
         }
+      },
+
+      getUser(user){
+        console.log(user)
+        this.id = user.id
+        this.name = user.name
+        this.city = user.city
+        this.email = user.email
+        this.phone = user.phone
+        this.status = user.status
+
       }
     }
 
