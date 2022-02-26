@@ -41,7 +41,8 @@
                     </select>
                     <div class="error-msg">{{ error.status }}</div>
                   </div>
-                  <button class="btn btn-primary mb-4">Add User</button>
+                  <button class="btn btn-primary mb-4" v-if="this.id">Update</button>
+                  <button class="btn btn-primary mb-4" v-else>Add User</button>
                 </div>
               </form>
 
