@@ -41,8 +41,18 @@
                     </select>
                     <div class="error-msg">{{ error.status }}</div>
                   </div>
-                  <button class="btn btn-primary mb-4" v-if="this.id">Update</button>
-                  <button class="btn btn-primary mb-4" v-else>Add User</button>
+                  <div class="row">
+                    <div class="col-6">
+                      <button class="btn btn-primary mb-4" v-if="this.id">Update</button>
+                      <button class="btn btn-primary mb-4" v-else>Add User</button>
+                    </div>
+                    <div class="col-6" style="text-align: right">
+                      <button @click="clearForm" class="btn btn-primary mb-4">Clear</button>
+                    </div>
+                  </div>
+
+
+
                 </div>
               </form>
 
@@ -230,7 +240,6 @@
 
         }
       },
-
       getUser(user){
         console.log(user)
         this.id = user.id
@@ -240,7 +249,17 @@
         this.phone = user.phone
         this.status = user.status
 
+      },
+      clearForm(){
+        this.id = ''
+        this.name = ''
+        this.city = ''
+        this.email = ''
+        this.phone = ''
+        this.status = ''
+        this.error = ''
       }
+
     }
 
 
