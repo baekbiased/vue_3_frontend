@@ -51,8 +51,6 @@
                     </div>
                   </div>
 
-
-
                 </div>
               </form>
 
@@ -221,18 +219,36 @@
           if(this.v$.name.$error){
             console.log("Name is Required!")
             this.error.name = "Name is Required!"
+          }else{
+            this.error.name = ''
           }
+
           if(this.v$.city.$error){
+            console.log("City is Required!")
             this.error.city = "City is Required!"
+          }else{
+            this.error.city = ''
           }
+
           if(this.v$.email.$error){
+            console.log("Email is Required!")
             this.error.email = "Email is Required!"
+          }else{
+            this.error.email = ''
           }
+
           if(this.v$.phone.$error){
-            this.error.phone = "Phone# is Required!"
+            console.log("phone is Required!")
+            this.error.phone = "phone# is Required!"
+          }else{
+            this.error.phone = ''
           }
+
           if(this.v$.status.$error){
+            console.log("Status is Required!")
             this.error.status = "Status is Required!"
+          }else{
+            this.error.status = ''
           }
 
         }
