@@ -14,28 +14,28 @@
                   <div class="mb-4">
                     <label class="form-label" for="name">Name</label>
                     <input v-model="id" hidden>
-                    <input class="form-control" v-model="name" id="name" type="text">
+                    <input class="form-control" v-model="name" id="name" type="text" v-bind:style= "[error.name ? {'border-color': '#dc3545'} : '']">
                     <div class="error-msg">{{ error.name }}</div>
 
                   </div>
                   <div class="mb-4">
                     <label class="form-label" for="city">City</label>
-                    <input class="form-control" v-model="city" id="city" type="text">
+                    <input class="form-control" v-model="city" id="city" type="text" v-bind:style= "[error.city ? {'border-color': '#dc3545'} : '']">
                     <div class="error-msg">{{ error.city }}</div>
                   </div>
                   <div class="mb-4">
                     <label class="form-label" for="email">Email</label>
-                    <input class="form-control" v-model="email" id="email" type="text">
+                    <input class="form-control" v-model="email" id="email" type="text" v-bind:style= "[error.email ? {'border-color': '#dc3545'} : '']">
                     <div class="error-msg">{{ error.email }}</div>
                   </div>
                   <div class="mb-4">
                     <label class="form-label" for="phone">Phone#</label>
-                    <input class="form-control" v-model="phone" id="phone" type="text">
+                    <input class="form-control" v-model="phone" id="phone" type="text" v-bind:style= "[error.phone ? {'border-color': '#dc3545'} : '']">
                     <div class="error-msg">{{ error.phone }}</div>
                   </div>
                   <div class="mb-4">
                     <label class="form-label" for="status">Status</label>
-                    <select class="form-select" v-model="status" id="status" >
+                    <select class="form-select" v-model="status" id="status" v-bind:style= "[error.status ? {'border-color': '#dc3545'} : '']">
                       <option value="Active">Active</option>
                       <option value="Inactive">Inactive</option>
                     </select>
@@ -108,6 +108,14 @@
     </footer>
   </div>
 </template>
+
+<style>
+  .error-msg {
+    color : #dc3545;
+    text-align: right;
+    margin-top: 5px;
+  }
+</style>
 
 <script>
   import useVuelidate from '@vuelidate/core'
