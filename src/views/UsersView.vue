@@ -9,7 +9,7 @@
         <div class="row mb-5">
           <div class="col-lg-4">
             <div class="card mb-4 mb-lg-0">
-              <form ref="userForm" @submit.prevent="addUser">
+              <form ref="userForm">
                 <div class="card-body">
                   <div class="mb-4">
                     <label class="form-label" for="name">Name</label>
@@ -44,10 +44,10 @@
                   <div class="row">
                     <div class="col-6">
                       <button class="btn btn-primary mb-4" v-if="this.id">Update</button>
-                      <button class="btn btn-primary mb-4" v-else>Add User</button>
+                      <button class="btn btn-primary mb-4" v-else @click="addUser">Add User</button>
                     </div>
                     <div class="col-6" style="text-align: right">
-                      <button @click="clearForm" class="btn btn-primary mb-4">Clear</button>
+                      <button type="button" @click="clearForm" class="btn btn-primary mb-4">Clear</button>
                     </div>
                   </div>
 
@@ -127,6 +127,7 @@
           phone : null,
           status : null,
         },
+
         id : null,
         name : null,
         city : null,
@@ -183,8 +184,10 @@
 
 
     methods: {
-      addUser(){
-        // this.v$.$touch()
+      addUser(e){
+        e.preventDefault()
+
+        this.v$.$touch()
         this.v$.$validate()
 
         if(!this.v$.$error){
@@ -211,13 +214,7 @@
             this.users.push( new_user );
           }
 
-          console.log("success");
-          this.id = '';
-          this.name = '';
-          this.city = '';
-          this.email = '';
-          this.phone = '';
-          this.status = '';
+          this.clearForm();
         }
         else{
           console.log("failed")
@@ -257,7 +254,12 @@
         this.email = ''
         this.phone = ''
         this.status = ''
-        this.error = ''
+        this.error.id = ''
+        this.error.name = ''
+        this.error.city = ''
+        this.error.email = ''
+        this.error.phone = ''
+        this.error.status = ''
       }
 
     }
