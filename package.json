@@ -9,6 +9,7 @@
   "dependencies": {
     "@vuelidate/core": "^2.0.0-alpha.34",
     "@vuelidate/validators": "^2.0.0-alpha.26",
+    "vee-validate": "^4.5.9",
     "vue": "^3.2.31",
     "vue-router": "^4.0.12"
   },

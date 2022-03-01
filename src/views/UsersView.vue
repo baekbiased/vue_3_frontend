@@ -9,7 +9,7 @@
         <div class="row mb-5">
           <div class="col-lg-4">
             <div class="card mb-4 mb-lg-0">
-              <form ref="userForm">
+              <form @submit.prevent="addUser" ref="userForm" >
                 <div class="card-body">
                   <div class="mb-4">
                     <label class="form-label" for="name">Name</label>
@@ -43,8 +43,8 @@
                   </div>
                   <div class="row">
                     <div class="col-6">
-                      <button class="btn btn-primary mb-4" v-if="this.id">Update</button>
-                      <button class="btn btn-primary mb-4" v-else @click="addUser">Add User</button>
+                      <button type="submit" class="btn btn-primary mb-4" v-if="this.id">Update</button>
+                      <button type="submit" class="btn btn-primary mb-4" v-else @click="addUser">Add User</button>
                     </div>
                     <div class="col-6" style="text-align: right">
                       <button type="button" @click="clearForm" class="btn btn-primary mb-4">Clear</button>
@@ -74,6 +74,7 @@
                     <th data-sortable="" style="width: 21.7876%;"><a href="#" class="dataTable-sorter">Email</a></th>
                     <th data-sortable="" style="width: 20.0329%;"><a href="#" class="dataTable-sorter">Phone#</a></th>
                     <th data-sortable="" style="width: 20.0329%;"><a href="#" class="dataTable-sorter">Status</a></th>
+                    <th data-sortable="" style="width: 20.0329%;"><a href="#" class="dataTable-sorter">Action</a></th>
                   </tr>
                   </thead>
                   <tbody>
@@ -84,7 +85,8 @@
                       <td>{{ user.city }}</td>
                       <td>{{ user.email }}</td>
                       <td>{{ user.phone }}</td>
-                      <td class="text-base"> <span class="badge badge-danger-light">{{ user.status }}</span></td>
+                      <td class="text-base"> <span v-bind:class="[user.status=='Active' ? ['badge', 'badge-success-light'] : ['badge', 'badge-danger-light']]">{{ user.status }}</span></td>
+                      <td><button type="button" @click="removeUser(user)" class="delete-btn"><span class="badge badge-danger-light">Delete</span></button></td>
                     </tr>
                   </tbody>
                 </table></div><div class="dataTable-bottom"><div class="dataTable-info">Showing 1 to {{ users.length }} of {{ users.length }} entries</div><nav class="dataTable-pagination"><ul class="dataTable-pagination-list"></ul></nav></div></div>
@@ -114,6 +116,10 @@
     color : #dc3545;
     text-align: right;
     margin-top: 5px;
+  }
+  .delete-btn {
+    border: none;
+    background: transparent;
   }
 </style>
 
@@ -261,6 +267,7 @@
 
         }
       },
+
       getUser(user){
         console.log(user)
         this.id = user.id
@@ -271,6 +278,13 @@
         this.status = user.status
 
       },
+
+      removeUser(user){
+        console.log(user)
+        this.users.splice(this.users.indexOf(user), 1);
+
+      },
+
       clearForm(){
         this.id = ''
         this.name = ''
@@ -285,7 +299,6 @@
         this.error.phone = ''
         this.error.status = ''
       }
-
     }
 
 
