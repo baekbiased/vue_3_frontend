@@ -1,6 +1,6 @@
 ### Step 1 
 - npm init vue@latest
-### step 2
+### Step 2
 - cd vue-project
 - npm install
 - npm run dev
