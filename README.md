@@ -16,5 +16,3 @@
 # Note: 
 /src/main.js must be included in index.html
 
-
-### hello there
