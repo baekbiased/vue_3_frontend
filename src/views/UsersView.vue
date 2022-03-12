@@ -69,23 +69,23 @@
                   <tr>
                     <th style="width: 11.1131%;" data-sortable="false"> </th>
                     <th>Id</th>
-                    <th data-sortable="" style="width: 22.5187%;"><a href="#" class="dataTable-sorter">Name</a></th>
-                    <th data-sortable="" style="width: 24.5659%;"><a href="#" class="dataTable-sorter">City</a></th>
-                    <th data-sortable="" style="width: 21.7876%;"><a href="#" class="dataTable-sorter">Email</a></th>
-                    <th data-sortable="" style="width: 20.0329%;"><a href="#" class="dataTable-sorter">Phone#</a></th>
-                    <th data-sortable="" style="width: 20.0329%;"><a href="#" class="dataTable-sorter">Status</a></th>
-                    <th data-sortable="" style="width: 20.0329%;"><a href="#" class="dataTable-sorter">Action</a></th>
+                    <th style="width: 22.5187%;">Name</th>
+                    <th style="width: 24.5659%;">City</th>
+                    <th style="width: 21.7876%;">Email</th>
+                    <th style="width: 20.0329%;">Phone#</th>
+                    <th style="width: 20.0329%;">Status</th>
+                    <th style="width: 20.0329%;"><a >Action</a></th>
                   </tr>
                   </thead>
                   <tbody>
-                    <tr @dblclick="getUser(user)" v-for="(user, index) in users">
+                    <tr @dblclick="getUser(user)" v-for="(user) in users">
                       <td><span class="form-check"><input class="form-check-input" type="checkbox"></span></td>
                       <td>{{ user.id }}</td>
                       <td><a href="javascript:void(0)" class="text-decoration-none text-reset fw-bolder">{{ user.name }}</a></td>
                       <td>{{ user.city }}</td>
                       <td>{{ user.email }}</td>
                       <td>{{ user.phone }}</td>
-                      <td class="text-base"> <span v-bind:class="[user.status=='Active' ? ['badge', 'badge-success-light'] : ['badge', 'badge-danger-light']]">{{ user.status }}</span></td>
+                      <td class="text-base"><span v-bind:class="[user.status=='Active' ? ['badge', 'badge-success-light'] : ['badge', 'badge-danger-light']]">{{ user.status }}</span></td>
                       <td><button type="button" @click="removeUser(user)" class="delete-btn"><span class="badge badge-danger-light">Delete</span></button></td>
                     </tr>
                   </tbody>
@@ -194,12 +194,11 @@
       }
     },
 
-
     methods: {
       addUser(e){
         e.preventDefault()
 
-        this.v$.$touch()
+        // this.v$.$touch()
         this.v$.$validate()
 
         if(!this.v$.$error){
@@ -224,6 +223,7 @@
               status : this.status
             }
             this.users.push( new_user );
+            console.log('Added Successfully');
           }
 
           this.clearForm();
@@ -298,9 +298,9 @@
         this.error.email = ''
         this.error.phone = ''
         this.error.status = ''
-      }
-    }
+      },
 
+    }
 
   }
 
